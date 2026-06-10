@@ -17,7 +17,7 @@
 
 The platform integrates a **machine learning layer** for fare prediction, crowd estimation, route recommendation, and peak-hour detection — making it an end-to-end intelligent transport solution.
 
-🌐 **Live Demo:** _[Add your deployed URL here]_
+🌐 **Live Demo:** (https://city-run-smartticket-main.onrender.com)
 
 ---
 
