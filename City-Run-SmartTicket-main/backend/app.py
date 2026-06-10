@@ -17,13 +17,12 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from ml_predictor import predict_crowd, recommend_routes, predict_fare
 
 app = Flask(__name__, template_folder='../frontend/templates', static_folder='../frontend/static')
-app.secret_key = 'tsrtc_hyd_2024_secret_jwt'
-CORS(app)
+app.secret_key = os.environ.get('SECRET_KEY', 'dev-only-fallback')CORS(app)
 
 DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'transport.db')
 # ─── JWT ──────────────────────────────────────────────────────────────────────
 
-JWT_SECRET = 'tsrtc_jwt_secret_2024_hyderabad'
+JWT_SECRET = os.environ.get('JWT_SECRET', 'dev-only-fallback')
 
 def _b64url(data):
     return base64.urlsafe_b64encode(data).rstrip(b'=').decode()

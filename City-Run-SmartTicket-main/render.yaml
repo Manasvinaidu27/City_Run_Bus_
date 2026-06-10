@@ -2,6 +2,7 @@ services:
   - type: web
     name: tsrtc-smartticket
     env: python
+    rootDir: transport_ticketing
     buildCommand: pip install -r requirements.txt
-    startCommand: python run.py
+    startCommand: gunicorn --chdir backend app:app --bind 0.0.0.0:$PORT
     plan: free
