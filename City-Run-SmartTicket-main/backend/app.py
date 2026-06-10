@@ -17,8 +17,8 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from ml_predictor import predict_crowd, recommend_routes, predict_fare
 
 app = Flask(__name__, template_folder='../frontend/templates', static_folder='../frontend/static')
-app.secret_key = os.environ.get('SECRET_KEY', 'dev-only-fallback')CORS(app)
-
+app.secret_key = os.environ.get('SECRET_KEY', 'dev-only-fallback')
+CORS(app)
 DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'transport.db')
 # ─── JWT ──────────────────────────────────────────────────────────────────────
 
