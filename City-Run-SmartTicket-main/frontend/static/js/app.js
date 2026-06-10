@@ -298,16 +298,18 @@ async function bookTicket(txnId = null) {
 // ─── COUNTDOWN ────────────────────────────────────────────
 function startCountdown(expiry) {
   if (countdownTimer) clearInterval(countdownTimer);
-  const totalMs = 30 * 60 * 1000;
+  const totalMs = 60 * 60 * 1000;
   const circumference = 326.7;
 
   function update() {
     const remaining = expiry - Date.now();
     if (remaining <= 0) { expireQR(); return; }
-    const mins = Math.floor(remaining / 60000);
-    const secs = Math.floor((remaining % 60000) / 1000);
+    const totalSecs = Math.floor(remaining / 1000);
+    const hrs  = Math.floor(totalSecs / 3600);
+    const mins = Math.floor((totalSecs % 3600) / 60);
+    const secs = totalSecs % 60;
     document.getElementById('countdown-mins').textContent =
-      `${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+      `${String(hrs).padStart(2,'0')}:${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
     const fraction = remaining / totalMs;
     const offset = circumference * (1 - fraction);
     const ringPath = document.getElementById('ring-path');
@@ -327,7 +329,7 @@ function startCountdown(expiry) {
 
   update();
   countdownTimer = setInterval(update, 1000);
-}
+} 
 
 function expireQR() {
   clearInterval(countdownTimer);
